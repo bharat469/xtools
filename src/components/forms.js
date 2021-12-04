@@ -15,16 +15,17 @@ const Forms = (props) => {
 	const dispatch = useDispatch();
 	const { userToken, serial_number } = useSelector((state) => state.user);
 	// ...................................date setup.................................
-	const [ isDatePickerVisible, setDatePickerVisibility ] = useState(false);
-	const [ Date, setDate ] = useState('DD-MM-YYYY');
-	const [ name, setName ] = useState('');
-	const [ email, setEmail ] = useState('');
-	const [ phone, setPhone ] = useState('');
-	const [ address, setAddress ] = useState('');
-	const [ details, setDetails ] = useState('');
-	const [ GST, setGST ] = useState('');
-	const [ aadhar, setAadhar ] = useState('');
-	const [ pan, setPan ] = useState('');
+	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+	const [Date, setDate] = useState('DD-MM-YYYY');
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [phone, setPhone] = useState('');
+	const [address, setAddress] = useState('');
+	const [details, setDetails] = useState('');
+	const [GST, setGST] = useState('');
+	const [aadhar, setAadhar] = useState('');
+	const [pan, setPan] = useState('');
+	const [editable,setEditable]=useState(false)
 
 	const submitForm = () => {
 		const formData = new FormData();
@@ -57,10 +58,10 @@ const Forms = (props) => {
 		hideDatePicker();
 	};
 	// ...............................imagePickerSetup..............................................
-	const [ image, setImage ] = useState(null);
-	const [ Aimage, setAimage ] = useState(null);
-	const [ idImage, setidImage ] = useState(null);
-	const [ lImage, setlImage ] = useState(null);
+	const [image, setImage] = useState(null);
+	const [Aimage, setAimage] = useState(null);
+	const [idImage, setidImage] = useState(null);
+	const [lImage, setlImage] = useState(null);
 
 	useEffect(() => {
 		(async () => {
@@ -77,7 +78,7 @@ const Forms = (props) => {
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.All,
 			allowsEditing: true,
-			aspect: [ 4, 3 ],
+			aspect: [4, 3],
 			quality: 1
 		});
 
@@ -91,7 +92,7 @@ const Forms = (props) => {
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.All,
 			allowsEditing: true,
-			aspect: [ 4, 3 ],
+			aspect: [4, 3],
 			quality: 1
 		});
 
@@ -105,7 +106,7 @@ const Forms = (props) => {
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.All,
 			allowsEditing: true,
-			aspect: [ 4, 3 ],
+			aspect: [4, 3],
 			quality: 1
 		});
 
@@ -119,7 +120,7 @@ const Forms = (props) => {
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.All,
 			allowsEditing: true,
-			aspect: [ 4, 3 ],
+			aspect: [4, 3],
 			quality: 1
 		});
 
@@ -200,8 +201,9 @@ const Forms = (props) => {
 								placeholderTextColor={Primary}
 								multiline={true}
 								onChangeText={setDetails}
+								editable={editable}
 							/>
-							<Entypo name="edit" size={24} color={Primary} style={styles.iconEdit} />
+							<Entypo name="edit" size={24} color={Primary} style={styles.iconEdit} onPress={()=>setEditable(!editable)} />
 						</View>
 					</View>
 					<TouchableOpacity style={styles.AddStyle} onPress={props.onAdd}>
@@ -302,7 +304,7 @@ const Forms = (props) => {
 						</View>
 					</View>
 				</View>
-				<TouchableOpacity style={styles.AddStyle} onPress={submitForm}>
+				<TouchableOpacity style={styles.AddStyle2} onPress={submitForm}>
 					<Text style={styles.addText}>Submit</Text>
 				</TouchableOpacity>
 
@@ -317,7 +319,8 @@ export default Forms;
 const styles = StyleSheet.create({
 	formContainer: {
 		top: hp('3%'),
-		flex: 1
+		flex: 1,
+
 	},
 	headerText: {
 		fontSize: hp('2%'),
@@ -381,7 +384,7 @@ const styles = StyleSheet.create({
 
 		elevation: 5,
 		flexDirection: 'row',
-		height: hp('14%')
+		height: hp('24%')
 	},
 	inputFullBox2: {
 		flex: 1,
@@ -435,6 +438,7 @@ const styles = StyleSheet.create({
 	AddStyle: {
 		backgroundColor: Primary,
 		padding: hp('2%'),
+
 		borderRadius: 8,
 		margin: 12,
 		shadowColor: '#000',
@@ -445,7 +449,27 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.39,
 		shadowRadius: 8.3,
 		elevation: 13,
-		margin: 12
+		margin: 12,
+		right: wp('2%')
+	},
+	AddStyle2: {
+		backgroundColor: Primary,
+		padding: hp('2%'),
+		position: 'absolute',
+		bottom: hp('15%'),
+		borderRadius: 8,
+		margin: 12,
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 6
+		},
+		shadowOpacity: 0.39,
+		shadowRadius: 8.3,
+		elevation: 13,
+	margin: 12,
+	width:wp('70%')
+
 	},
 	addText: {
 		color: '#fff',
@@ -484,6 +508,6 @@ const styles = StyleSheet.create({
 	},
 
 	ending: {
-		height: hp('30%')
+		height: hp('27%')
 	}
 });

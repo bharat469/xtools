@@ -10,13 +10,14 @@ import {
 	Keyboard
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Primary, secondary } from '../../helpers/color/color';
-import { useDispatch } from 'react-redux';
+import { Primary, secondary, error } from '../../helpers/color/color';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { loginUser } from '../../redux/userService';
 
 const Login = ({ navigation }) => {
 	const dispatch = useDispatch();
+	const { errorMessage } = useSelector((state) => state.user);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 
@@ -53,6 +54,7 @@ const Login = ({ navigation }) => {
 					</TouchableOpacity>
 					<Text style={styles.footerContainer}>Copyright Ⓒ 2021 All Right Reserved</Text>
 				</View>
+				{errorMessage !== '//#region ' && <Text style={styles.errorText}>{errorMessage}</Text>}
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -130,5 +132,9 @@ const styles = StyleSheet.create({
 		color: secondary,
 		margin: 12,
 		fontSize: hp('1.6%')
+	},
+
+	errorText: {
+		color: error
 	}
 });

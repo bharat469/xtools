@@ -17,6 +17,10 @@ export const loginUser = createAsyncThunk('user/login', async ({ email, password
 	}
 });
 
+
+
+
+
 export const newUser = createAsyncThunk('user/addUser', async (body, thunkAPI) => {
 	try {
 		const response = await axios.post(`${API_URL}/customer/store`, body.formData, {

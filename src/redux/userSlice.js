@@ -7,7 +7,8 @@ const initialState = {
 	userToken: '',
 	isLoading: false,
 	ssnList: [],
-	serial_number: ''
+	serial_number: '',
+	errorMessage: ''
 };
 
 const userSlice = createSlice({
@@ -18,6 +19,7 @@ const userSlice = createSlice({
 			state.isLoading = false;
 			state.userName = '';
 			state.userToken = '';
+			state.errorMessage = '';
 		},
 		clearSSN(state, { payload }) {
 			state.ssnList = [];
@@ -38,7 +40,7 @@ const userSlice = createSlice({
 		},
 		[loginUser.rejected]: (state, { payload }) => {
 			state.isLoading = false;
-			// console.log(payload);
+			state.errorMessage = 'Login failed: ' + payload.data.error;
 		},
 		[newUser.fulfilled]: (state, { payload }) => {
 			state.isLoading = false;

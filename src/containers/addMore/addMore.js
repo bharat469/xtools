@@ -70,9 +70,15 @@ const AddMore = ({ navigation }) => {
 					/>
 				</View>
 				{search.length >= 3 &&
-					local.filter((item) => item.serial_number.includes(search)).map((item) => (
-						<View style={styles.ssnList} key={item.serial_number}>
-							<Text>{item.serial_number}</Text>
+					(local.filter((item) => item.serial_number.includes(search)).length > 0 ? (
+						local.filter((item) => item.serial_number.includes(search)).map((item) => (
+							<View style={styles.ssnList} key={item.serial_number}>
+								<Text>{item.serial_number}</Text>
+							</View>
+						))
+					) : (
+						<View style={styles.ssnList}>
+							<Text>No results found</Text>
 						</View>
 					))}
 			</View>

@@ -75,8 +75,9 @@ const styles = StyleSheet.create({
 		color: Primary
 	},
 	FormData: {
-		height: hp('80%')
-	},
+		height: hp('80%'),
+		// width:hp('45%')
+},
 	underLine: {
 		width: wp('80%'),
 		height: 0.8,

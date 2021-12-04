@@ -101,7 +101,7 @@ const TransferFind = ({ navigation }) => {
 					</View>
 				</View>
 
-				<View style={styles.detailList}>
+				{/* <View style={styles.detailList}>
 					<Text style={styles.listheader}>Previous Owner Details</Text>
 					<View style={styles.list}>
 						<Text style={styles.headingList}>Serial Number</Text>
@@ -119,7 +119,7 @@ const TransferFind = ({ navigation }) => {
 						<Text style={styles.headingList}>Phone Number</Text>
 						<Text style={styles.headingPara}>+91 8146937721</Text>
 					</View>
-				</View>
+				</View> */}
 				<TouchableOpacity style={styles.AddStyle} onPress={() => navigation.navigate('Transfer')}>
 					<Text style={styles.addText}>Submit</Text>
 				</TouchableOpacity>
